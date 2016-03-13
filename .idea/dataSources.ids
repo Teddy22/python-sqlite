@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Sqlite (Xerial) - classic_models.sqlite" uuid="4b270d90-77df-429d-a9cc-0a02c2d141ea">
+    <database-info product="SQLite" version="3.8.9" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
+    <schema name="" catalog=""/>
+    <table name="Customers" schema="" catalog="" type="TABLE">
+      <column name="customerNumber" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="customerName" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="contactLastName" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="contactFirstName" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="addressLine1" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="addressLine2" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="city" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="state" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="postalCode" sqlType="VARCHAR(15)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="country" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="salesRepEmployeeNumber" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="creditLimit" sqlType="DOUBLE" precision="0" scale="-1" nullable="true" jdbcType="6"/>
+      <primary-key columns="customernumber),foreign key (salesrepemployeenumber"/>
+      <foreign-key name="#FAKE_Customers_1" columns="salesRepEmployeeNumber" ref-table="employees" ref-schema="" ref-catalog="" ref-columns="employeeNumber" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="Employees" schema="" catalog="" type="TABLE">
+      <column name="employeeNumber" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="lastName" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="firstName" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="extension" sqlType="VARCHAR(10)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="officeCode" sqlType="VARCHAR(10)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="reportsTo" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="jobTitle" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <primary-key columns="employeenumber),foreign key (officecode"/>
+      <foreign-key name="#FAKE_Employees_1" columns="officeCode" ref-table="offices" ref-schema="" ref-catalog="" ref-columns="officeCode" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="Offices" schema="" catalog="" type="TABLE">
+      <column name="officeCode" sqlType="VARCHAR(10)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="city" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="addressLine1" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="addressLine2" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="state" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="country" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="postalCode" sqlType="VARCHAR(15)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="territory" sqlType="VARCHAR(10)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <primary-key columns="officecode"/>
+    </table>
+    <table name="OrderDetails" schema="" catalog="" type="TABLE">
+      <column name="orderNumber" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="productCode" sqlType="VARCHAR(15)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="quantityOrdered" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="priceEach" sqlType="DOUBLE" precision="0" scale="-1" nullable="false" jdbcType="6"/>
+      <column name="orderLineNumber" sqlType="SMALLINT" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <primary-key columns="ordernumber,productcode"/>
+      <foreign-key name="#FAKE_OrderDetails_1" columns="productCode" ref-table="Products" ref-schema="" ref-catalog="" ref-columns="productCode" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_OrderDetails_2" columns="orderNumber" ref-table="Orders" ref-schema="" ref-catalog="" ref-columns="orderNumber" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="Orders" schema="" catalog="" type="TABLE">
+      <column name="orderNumber" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="orderDate" sqlType="DATETIME" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="requiredDate" sqlType="DATETIME" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="shippedDate" sqlType="DATETIME" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="status" sqlType="VARCHAR(15)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="comments" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="customerNumber" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <primary-key columns="ordernumber),foreign key (customernumber"/>
+      <foreign-key name="#FAKE_Orders_1" columns="customerNumber" ref-table="customers" ref-schema="" ref-catalog="" ref-columns="customerNumber" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="Payments" schema="" catalog="" type="TABLE">
+      <column name="customerNumber" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="checkNumber" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="paymentDate" sqlType="DATETIME" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="amount" sqlType="DOUBLE" precision="0" scale="-1" nullable="false" jdbcType="6"/>
+      <primary-key columns="customernumber,checknumber"/>
+      <foreign-key name="#FAKE_Payments_1" columns="customerNumber" ref-table="customers" ref-schema="" ref-catalog="" ref-columns="customerNumber" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="ProductLines" schema="" catalog="" type="TABLE">
+      <column name="productLine" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="textDescription" sqlType="VARCHAR(4000)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="imageName" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <primary-key columns="productline"/>
+    </table>
+    <table name="Products" schema="" catalog="" type="TABLE">
+      <column name="productCode" sqlType="VARCHAR(15)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="productName" sqlType="VARCHAR(70)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="productLine" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="productScale" sqlType="VARCHAR(10)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="productVendor" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="productDescription" sqlType="TEXT" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="quantityInStock" sqlType="SMALLINT" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="buyPrice" sqlType="DOUBLE" precision="0" scale="-1" nullable="false" jdbcType="6"/>
+      <column name="MSRP" sqlType="DOUBLE" precision="0" scale="-1" nullable="false" jdbcType="6"/>
+      <primary-key columns="productcode),foreign key (productline"/>
+      <foreign-key name="#FAKE_Products_1" columns="productLine" ref-table="productLines" ref-schema="" ref-catalog="" ref-columns="productLine" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+  </data-source>
+</component>
